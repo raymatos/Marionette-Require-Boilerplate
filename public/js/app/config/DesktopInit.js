@@ -9,6 +9,7 @@ require.config({
         "underscore":"libs/lodash",
         "backbone":"libs/backbone",
         "marionette":"libs/backbone.marionette",
+        "subroutes":"libs/backbone.subroute",
         "handlebars":"libs/handlebars",
 
         // Plugins
