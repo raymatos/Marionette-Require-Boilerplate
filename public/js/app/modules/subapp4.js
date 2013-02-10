@@ -6,8 +6,6 @@ define(['jquery', 'underscore', 'handlebars', 'routers/subapp4Router', 'controll
 
         // This code is ran by Marionette when the modules are loaded
         subapp4.addInitializer(function () {
-            console.log('start Mod')
-
             subapp4.appRouter = new subapp4Router("subapp4", {
                 controller: new subapp4Controller(),
                 createTrailingSlashRoutes : true

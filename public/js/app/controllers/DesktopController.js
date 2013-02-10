@@ -34,24 +34,16 @@ define(['backbone', 'marionette', 'views/WelcomeView', 'views/DesktopHeaderView'
         
         subapp2: function() {
         	this.setActiveEntry();
-        	require(['views/subapp2View'],
-	    		function(view){
-	    			
-	    			App.mainRegion.show(new view());
-	    			
-	    		}
-	    	);
+        	require(['app/modules/subapp2'],function(module){
+        		module.start();
+        	});
         },
         
         subapp3: function() {
         	this.setActiveEntry();
-        	require(['views/subapp3View'],
-	    		function(view){
-	    			
-	    			App.mainRegion.show(new view());
-	    			
-	    		}
-	    	);
+        	require(['app/modules/subapp3'],function(module){
+        		module.start();
+        	});
         },
         
         subapp4: function(subroute) {
@@ -59,8 +51,7 @@ define(['backbone', 'marionette', 'views/WelcomeView', 'views/DesktopHeaderView'
         	require(['app/modules/subapp4'],function(module){
         		module.start();
         	});
-        }
-        
+        }      
         
     });
 });
