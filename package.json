@@ -23,7 +23,8 @@
     }
   ],
   "dependencies": {
-    "express": "3.x"
+    "express": "3.x",
+    "node-sass" : "*"
   },
   "main": "./server/server",
   "keywords": ["Marionette.js", "Backbone.js", "Require.js", "Marionette and Require Boilerplate"]
