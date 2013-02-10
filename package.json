@@ -28,3 +28,4 @@
   "main": "./server/server",
   "keywords": ["Marionette.js", "Backbone.js", "Require.js", "Marionette and Require Boilerplate"]
 }
+

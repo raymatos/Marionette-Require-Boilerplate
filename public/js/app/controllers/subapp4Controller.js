@@ -3,7 +3,7 @@ define(['backbone', 'marionette', 'views/DesktopHeaderView', 'views/subapp4View'
         
         initialize:function (options) {
         	console.log("DDDDDDsass");
-            App.headerRegion.show(new DesktopHeaderView());
+            //App.headerRegion.show(new DesktopHeaderView());
         },
         
         index: function(){

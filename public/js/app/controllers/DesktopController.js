@@ -2,19 +2,27 @@ define(['backbone', 'marionette', 'views/WelcomeView', 'views/DesktopHeaderView'
     return Backbone.Marionette.Controller.extend({
         
         initialize:function (options) {
-            
             App.headerRegion.show(new DesktopHeaderView());
         },
         
+        setActiveEntry: function() {
+        	console.log(Backbone.history.getHash());
+	        // Unmark all entries
+	        $('.nav li').removeClass('active');
+	
+	        // Mark active entry
+	        $(".nav li a[href='#" + Backbone.history.getHash() + "']").parents('li').addClass('active');
+	    },
         
         //gets mapped to in AppRouter's appRoutes
         index:function () {
-        	console.log("INDEX")
+        	this.setActiveEntry();
             App.mainRegion.show(new WelcomeView());
         },
         
         //map routes to submodules
         subapp1: function() {
+        	this.setActiveEntry();
         	require(['views/subapp1View'],
 	    		function(view){
 	    			
@@ -25,6 +33,7 @@ define(['backbone', 'marionette', 'views/WelcomeView', 'views/DesktopHeaderView'
         },
         
         subapp2: function() {
+        	this.setActiveEntry();
         	require(['views/subapp2View'],
 	    		function(view){
 	    			
@@ -35,6 +44,7 @@ define(['backbone', 'marionette', 'views/WelcomeView', 'views/DesktopHeaderView'
         },
         
         subapp3: function() {
+        	this.setActiveEntry();
         	require(['views/subapp3View'],
 	    		function(view){
 	    			
@@ -45,6 +55,7 @@ define(['backbone', 'marionette', 'views/WelcomeView', 'views/DesktopHeaderView'
         },
         
         subapp4: function(subroute) {
+        	this.setActiveEntry();
         	require(['app/modules/subapp4'],function(module){
         		module.start();
         	});
