@@ -27,28 +27,38 @@ function ($, _, Handlebars, AppRouter) {
                     controller: new Controller()
                 });
                 
-                Backbone.history.start();
+                Backbone.history.start({ pushState: Modernizr.history, silent: true, root : '/'});
                 
+				if(!Modernizr.history) {
+				    var rootLength = Backbone.history.options.root.length;
+				    var fragment = window.location.pathname.substr(rootLength);
+				    Backbone.history.navigate(fragment, { trigger: true });
+				} else {
+				    Backbone.history.loadUrl(Backbone.history.getFragment())
+				}
+				
+				App.getLocation = function(){
+				    return window.location.protocol + '//' + window.location.host + Backbone.history.options.root + Backbone.history.getFragment()
+				}
                 
-                // All navigation that is relative should be passed through the navigate
+				// All navigation that is relative should be passed through the navigate
 				// method, to be processed by the router. If the link has a `data-bypass`
 				// attribute, bypass the delegation completely.
 				$(document).on('click', 'a:not([data-bypass])', function(evt) {
 					// Get the absolute anchor href.
 					var href = $(this).attr('href');
 					
-					// If the href exists and is a hash route, run it through Backbone.
-					if (href && href.indexOf('#') === 0) {
-						// Stop the default event to ensure the link will not cause a page
-						// refresh.
-						evt.preventDefault();
-						
-						// `Backbone.history.navigate` is sufficient for all Routers and will
-						// trigger the correct events. The Router's internal `navigate` method
-						// calls this anyways.  The fragment is sliced from the root.
-						Backbone.history.navigate(href, true);
-					}
+					// Stop the default event to ensure the link will not cause a page
+					// refresh.
+					evt.preventDefault();
+					
+					// `Backbone.history.navigate` is sufficient for all Routers and will
+					// trigger the correct events. The Router's internal `navigate` method
+					// calls this anyways.  The fragment is sliced from the root.
+					Backbone.history.navigate(href, true);
+					
 		  		});
+
             });
         });
     }

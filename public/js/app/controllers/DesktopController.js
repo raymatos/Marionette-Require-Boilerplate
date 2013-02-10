@@ -6,12 +6,12 @@ define(['backbone', 'marionette', 'views/WelcomeView', 'views/DesktopHeaderView'
         },
         
         setActiveEntry: function() {
-        	console.log(Backbone.history.getHash());
+        	console.log(Backbone.history.getFragment());
 	        // Unmark all entries
 	        $('.nav li').removeClass('active');
 	
 	        // Mark active entry
-	        $(".nav li a[href='#" + Backbone.history.getHash() + "']").parents('li').addClass('active');
+	        $(".nav li a[href='/" + Backbone.history.getFragment() + "']").parents('li').addClass('active');
 	    },
         
         //gets mapped to in AppRouter's appRoutes
